@@ -10,8 +10,8 @@ module Devise
 
       def inject_devise_twitter_intomodel
         inject_into_class model_path, class_name, <<-CONTENT
-  # To use devise-twitter don't forget to include the :twitter_oauth module:
-  # e.g. devise :database_authenticatable, ... , :twitter_oauth
+  # To use devise-twitter-mongoid don't forget to include the :twitter_oauth module:
+  # e.g. devise :database_authenticatable, ... , :twitterable_oauth
 
   # IMPORTANT: If you want to support sign in via twitter you MUST remove the
   #            :validatable module, otherwise the user will never be saved
@@ -28,8 +28,8 @@ CONTENT
       def add_devise_twitter_routes
         route <<-CONTENT
 devise_for :#{singular_name} do
-    match '/#{singular_name}/sign_in/twitter' => Devise::Twitter::Rack::Signin
-    match '/#{singular_name}/connect/twitter' => Devise::Twitter::Rack::Connect
+    match '/#{singular_name}/sign_in/twitter' => Devise::Twitter::Mongoid::Rack::Signin
+    match '/#{singular_name}/connect/twitter' => Devise::Twitter::Mongoid::Rack::Connect
   end
 CONTENT
       end
