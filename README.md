@@ -22,7 +22,7 @@ Installation
 
 Simply add devise-twitter to your Gemfile and bundle it up:
 
-    gem 'devise-twitter', :git => 'git://github.com/zefer/devise-twitter-mongoid.git'
+    gem 'devise-twitter-mongoid', :git => 'git://github.com/zefer/devise-twitter-mongoid.git'
 
 Run the generator, supplying the name of the model (e.g. User)
 
@@ -30,7 +30,7 @@ Run the generator, supplying the name of the model (e.g. User)
 
 Add your OAuth credentials to `config/initializers/devise_twitter.rb` 
 
-    Devise::Twitter.setup do |config|
+    Devise::Twitter::Mongoid.setup do |config|
       config.consumer_key = <YOUR CONSUMER KEY HERE>
       config.consumer_secret = <YOUR CONSUMER SECRET HERE>
       config.scope = :user
@@ -39,8 +39,8 @@ Add your OAuth credentials to `config/initializers/devise_twitter.rb`
 Modify your user model like so
 
     class User
-	  # To use devise-twitter don't forget to include the :twitter_oauth module:
-	  # e.g. devise :database_authenticatable, ... , :twitter_oauth
+	  # To use devise-twitter-mongoid don't forget to include the :twitter_oauth module:
+	  # e.g. devise :database_authenticatable, ... , :twitterable_oauth
 
 	  # IMPORTANT: If you want to support sign in via twitter you MUST remove the
 	  #            :validatable module, otherwise the user will never be saved
