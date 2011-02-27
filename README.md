@@ -68,8 +68,8 @@ Modify the generated routes (in `config/routes.rb`) to your liking
 
     Application.routes.draw do
       devise_for :user do
-        match '/user/sign_in/twitter' => Devise::Twitter::Rack::Signin
-        match '/user/connect/twitter' => Devise::Twitter::Rack::Connect
+        match '/user/sign_in/twitter' => Devise::Twitter::Mongoid::Rack::Signin
+        match '/user/connect/twitter' => Devise::Twitter::Mongoid::Rack::Connect
       end
       ...
 
