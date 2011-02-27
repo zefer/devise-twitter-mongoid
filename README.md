@@ -1,5 +1,7 @@
-devise-twitter
+devise-twitter-mongoid
 ==========
+
+A modified [devise-twitter](https://github.com/MSch/devise-twitter) for Mongoid.
 
 Devise-twitter adds **Sign in via Twitter** and **Connect your account to
 Twitter** functionality to your [devise][1] app.
@@ -20,7 +22,7 @@ Installation
 
 Simply add devise-twitter to your Gemfile and bundle it up:
 
-    gem 'devise-twitter'
+    gem 'devise-twitter', :git => 'git://github.com/zefer/devise-twitter-mongoid.git'
 
 Run the generator, supplying the name of the model (e.g. User)
 
@@ -71,11 +73,6 @@ Modify the generated routes (in `config/routes.rb`) to your liking
       end
       ...
 
-Run the generated migration
-
-    $ rake db:migrate
-
-
 
 Signing in via Twitter
 ----------------------
@@ -111,30 +108,14 @@ to merge the two users.
 
 If you have any idea how to improve it, please message me.
 
-Database changes
-----------------
-
-The generated migration adds three fields to your user model:
-
-    change_table(:users) do |t|
-      t.column :twitter_handle, :string
-      t.column :twitter_oauth_token, :string
-      t.column :twitter_oauth_secret, :string
-    end
-
-    add_index :users, :twitter_handle, :unique => true
-    add_index :users, [:twitter_oauth_token, :twitter_oauth_secret]
-
-Currently the names of these fields are hard coded, but making them
-customizable is on the roadmap.
-
-
 
 Acknowledgements
 ----------------
 
 Thanks to
 
+* [Martin Schürrer](http://twitter.com/MSch) for creating the original [devise-twitter](https://github.com/MSch/devise-twitter) - refer to this repo if you are using Active Record
+* [jtoy](https://github.com/jtoy) for kicking-off the Mongoid work. My conversion is based on [his fork of devise-twitter](https://github.com/jtoy/devise-twitter)
 * [Daniel Neighman](http://twitter.com/hassox) for creating warden, the framework Devise uses
 * [Jose Valim](http://twitter.com/josevalim) for creating Devise
 * [Pelle Braendgaard](http://stakeventures.com/pages/whoami) for implementing oauth support in Ruby
@@ -145,8 +126,8 @@ Thanks to
 Meta
 ----
 
-* Code: `git clone http://github.com/MSch/devise-twitter`
-* Bugs: <http://github.com/MSch/devise-twitter/issues>
-* Gems: <http://rubygems.org/gems/devise-twitter>
+* Code: `git clone http://github.com/zefer/devise-twitter-mongoid`
+* Bugs: <http://github.com/zefer/devise-twitter-mongoid/issues>
+* Gems: maybe, if this becomes useful
 
 [1]:http://github.com/plataformatec/devise
