@@ -17,6 +17,12 @@ module Devise
   #            :validatable module, otherwise the user will never be saved
   #            since it's email and password is blank.
   #            :validatable checks only email and password so it's safe to remove
+  
+  include Mongoid::Document
+
+  field :twitter_handle
+  field :twitter_oauth_token
+  field :twitter_oauth_secret
 
 CONTENT
       end
