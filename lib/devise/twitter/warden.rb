@@ -31,9 +31,9 @@ Warden::OAuth.access_token_user_finder(:twitterable) do |access_token|
     if user.nil?
       # Create user if we don't know him yet
       user = klass.new
-      user.send("#{Devise::Twitter.twitter_handle}=",twitter_handle)
-      user.send("#{Devise::Twitter.twitter_oauth_token}=", access_token.token)
-      user.send("#{Devise::Twitter.twitter_oauth_secret}=", access_token.secret)
+      user.send("#{Devise::Twitter.twitter_handle_field}=",twitter_handle)
+      user.send("#{Devise::Twitter.twitter_oauth_token_field}=", access_token.token)
+      user.send("#{Devise::Twitter.twitter_oauth_secret_field}=", access_token.secret)
       user.save
     end
 
