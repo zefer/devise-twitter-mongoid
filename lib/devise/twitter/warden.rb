@@ -5,7 +5,7 @@ Warden::OAuth.access_token_user_finder(:twitterable) do |access_token|
 
   if perform_connect
     # Add twitter_handle to current user
-    already_existing_user = klass.first(Devise::Twitter.twitter_handle_field => twitter_handle)
+    already_existing_user = klass.where(Devise::Twitter.twitter_handle_field => twitter_handle).first
     if already_existing_user.blank?
       # We don't know anyone with this handle, therefore continue with connecting
       user = @env['warden'].user
@@ -23,7 +23,7 @@ Warden::OAuth.access_token_user_finder(:twitterable) do |access_token|
     previous_user = @env['warden'].user
 
     # Try to find user by token
-    user = klass.first(Devise::Twitter.twitter_oauth_token_field=> access_token.token, Devise::Twitter.twitter_oauth_secret_field => access_token.secret)
+    user = klass.where( Devise::Twitter.twitter_oauth_token_field=> access_token.token, Devise::Twitter.twitter_oauth_secret_field => access_token.secret).first
 
     # Since we are logging in a new user we want to make sure the before_logout hook is called
     @env['warden'].logout if previous_user.present?
